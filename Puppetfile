@@ -6,6 +6,7 @@ forge 'https://forge.puppet.com'
 #mod 'puppetlabs/stdlib',      '4.25.1'
 mod 'abuxton/pdk'
 mod 'puppet-staging', '3.2.0'
+mod 'puppetlabs-stdlib', '4.13.1'
 mod 'puppetlabs/resource_api', '0.2.0'
 mod 'puppetlabs-puppetserver_gem', '1.0.0'
 # Modules from Git
