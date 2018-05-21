@@ -7,6 +7,7 @@ forge 'https://forge.puppet.com'
 mod 'abuxton/pdk'
 mod 'puppet-staging', '3.2.0'
 mod 'puppetlabs/resource_api', '0.2.0'
+mod 'puppetlabs-puppetserver_gem', '1.0.0'
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
 #mod 'apache',
