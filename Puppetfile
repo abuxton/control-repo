@@ -5,6 +5,7 @@ forge 'https://forge.puppet.com'
 #mod 'puppetlabs/inifile',     '2.2.1'
 #mod 'puppetlabs/stdlib',      '4.25.1'
 mod 'abuxton/pdk'
+mod 'puppetlabs-resource_api', '0.2.0'
 
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
