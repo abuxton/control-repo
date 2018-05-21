@@ -125,5 +125,7 @@ First clone the repo to your local OS (most of this is tested on OSX)
 
 ### R10k usage
 from with in your clone of the repo run the following once you have set up the environments folder and or local r10k folder (see site/role, site/profile and site/bootstrap for a clue.)
+Obv. you'll need local install of `gem bundler` the whole conxept of this repo is before and after puppet is installed so you can use `/opt/puppetlabs/bin/gem` environment for all your ruby needs.
+
 `bundle install --path vendor/bundle`
 `bundle exec r10k deploy environment --config site/bootsrap/file/r10k.yaml`
