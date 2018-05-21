@@ -117,3 +117,13 @@ If you use Puppet Enterprise and have not yet enabled and configured Code Manage
 
 * <https://github.com/Puppet-RampUpProgram/control-repo>
 
+## Using R10k locally for testing, fun and profit
+
+The control repo site folder contains a bootstrap module, the contents of which set up a handfull of folders for puppet and r10k. The Gemfile.local introduces r10k withn the bounds of `bundler`.
+
+First clone the repo to your local OS (most of this is tested on OSX)
+
+### R10k usage
+from with in your clone of the repo run the following once you have set up the environments folder and or local r10k folder (see site/role, site/profile and site/bootstrap for a clue.)
+`bundle install --path vendor/bundle`
+`bundle exec r10k deploy environment --config site/bootsrap/file/r10k.yaml`
