@@ -9,4 +9,5 @@ group :development do
   #gem 'simplecov', '~> 0.9.1'
   #gem 'ruby-prof', :platforms => :ruby
   gem 'r10k'
+  gem 'rake'
 end
