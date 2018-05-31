@@ -4,11 +4,18 @@ forge 'https://forge.puppet.com'
 # Versions should be updated to be the latest at the time you start
 #mod 'puppetlabs/inifile',     '2.2.1'
 #mod 'puppetlabs/stdlib',      '4.25.1'
-mod 'abuxton/pdk'
-mod 'puppet-staging', '3.2.0'
-mod 'puppetlabs-stdlib', '4.13.1'
-mod 'puppetlabs/resource_api', '0.2.0'
-mod 'puppetlabs-puppetserver_gem', '1.0.0'
+# modules for workstation and development laptop setup
+mod 'abuxton/pdk' #latest
+mod 'puppet-staging', '3.2.0' #dep. abuxton/pdk
+mod 'puppetlabs-stdlib'#, '4.13.1' #install latest
+mod 'puppetlabs/resource_api', '0.2.0' #
+mod 'puppetlabs-puppetserver_gem', '1.0.0' #dep. puppetlabs/resource_api
+
+# environment tools
+mod 'ccin2p3-bolt', '0.2.0' #no osx support so usefull for master Setup
+mod 'puppetlabs-bootstrap', '0.2.0' #install PE agents with Bolt
+mod 'puppetlabs-puppet_agent', '1.6.0' #manage and upgrade agents
+
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
 #mod 'apache',
