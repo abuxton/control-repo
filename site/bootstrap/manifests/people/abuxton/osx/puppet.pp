@@ -12,5 +12,9 @@ class bootstrap::people::abuxton::osx::puppet(
     owner => $user,
     require => File["$user_home/.puppetlabs"],
   }
+  class{'pdk':
+    pdk_download_url  =>  'pm.puppet.com/cgi-bin/pdk_download.cgi?dist=osx&rel=10.12&arch=x86_64',
+    pdk_version       => 'latest',
+    }
 
 }
