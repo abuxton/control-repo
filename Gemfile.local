@@ -10,4 +10,5 @@ group :development do
   #gem 'ruby-prof', :platforms => :ruby
   gem 'r10k'
   gem 'rake'
+  gem 'bolt'
 end

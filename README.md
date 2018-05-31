@@ -140,3 +140,18 @@ rm -rf `puppet config print environmentpath`/production
 bundle exec r10k deploy environment --config site/bootsrap/file/r10k.yaml
 
 ```
+
+## Bootstrapping Puppet
+
+The control-repo/scripts folder is intended to hold useful scripts of a nature to allow you to bootstrap the installation and deployment of Puppet.
+
+* Deploy the Puppet Master
+* Deploy the Puppet Agent #for local laptop usage
+
+The control-repo/site folder holds role and profiles and a bootstrap module where puppet is suitable to use to bootstrap the thing, to be used before or after r10k is invoked for deployment of the code environment.  
+
+* Bolt
+* PDK
+
+## Bolt
+It's worth being aware bolt is included in Gemfile.local as such you can on a local machine invoke `bundle exec bolt --help` and profit...
