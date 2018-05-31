@@ -4,7 +4,7 @@ case $osfamily {
     $user = 'abuxton'
     $user_home = "/Users/${user}"
     }
-  default{
+  default: {
     fail('Unsupported OS for user!')
     }
   }

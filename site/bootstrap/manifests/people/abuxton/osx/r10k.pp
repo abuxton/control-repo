@@ -6,7 +6,7 @@ package {'r10k':
   ensure => present,
   provider => 'gem',
 }
-file{"${user_home}/.puppetlabs/etc/r10k":
+file{"${user_home}/.puppetlabs/etc/puppet/r10k":
   ensure => 'directory',
   mode => '0755',
   owner => 'abuxton',
