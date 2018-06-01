@@ -1,3 +1,4 @@
+#
 class bootstrap::people::abuxton::osx::files(
   $user       = $bootstrap::people::abuxton::params::user,
   $user_home  = $bootstrap::people::abuxton::params::user_home,
@@ -46,10 +47,10 @@ class bootstrap::people::abuxton::osx::files(
     mode   => '0755',
     target => '/Users/abuxton/.dotfiles/tmux.conf',
   }
-file { "${user_home}/.profile":
-  ensure  => 'file',
-  content => '',
-  mode    => '0644',
-  #type    => 'file',
- }
+  file { "${user_home}/.profile":
+    ensure  => 'file',
+    content => '',
+    mode    => '0644',
+    #type    => 'file',
+  }
 }

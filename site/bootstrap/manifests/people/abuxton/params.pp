@@ -1,5 +1,6 @@
+#
 class bootstrap::people::abuxton::params{
-case $osfamily {
+case $::osfamily {
   'Darwin': {
     $user = 'abuxton'
     $user_home = "/Users/${user}"

@@ -1,3 +1,4 @@
+#
 class bootstrap::people::abuxton::osx::puppet(
   $user       = $bootstrap::people::abuxton::params::user,
   $user_home  = $bootstrap::people::abuxton::params::user_home,
