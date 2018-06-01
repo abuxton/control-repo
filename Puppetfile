@@ -11,11 +11,15 @@ mod 'puppetlabs-stdlib'#, '4.13.1' #install latest
 mod 'puppetlabs/resource_api', '0.2.0' #
 mod 'puppetlabs-puppetserver_gem', '1.0.0' #dep. puppetlabs/resource_api
 
+# provisioning tools
+mod 'puppetlabs-aws', '2.1.0'
+
 # environment tools
 mod 'ccin2p3-bolt', '0.2.0' #no osx support so usefull for master Setup
 mod 'puppetlabs-bootstrap', '0.2.0' #install PE agents with Bolt
 mod 'puppetlabs-puppet_agent', '1.6.0' #manage and upgrade agents
 mod 'WhatsARanjit-node_manager', '0.7.1' #manage classification groups
+
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
 #mod 'apache',

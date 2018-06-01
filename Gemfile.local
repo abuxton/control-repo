@@ -11,4 +11,7 @@ group :development do
   gem 'r10k'
   gem 'rake'
   gem 'bolt'
+# dependecy for aws
+  gem 'aws-sdk'
+  gem 'retries'
 end
