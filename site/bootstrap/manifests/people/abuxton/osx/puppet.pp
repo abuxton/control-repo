@@ -3,6 +3,8 @@ class bootstrap::people::abuxton::osx::puppet(
   $user_home  = $bootstrap::people::abuxton::params::user_home,
 
   ) inherits bootstrap::people::abuxton::params {
+  include resource_api::agent
+  
   file { "$user_home/.puppetlabs":
     ensure => 'directory',
   }
@@ -16,5 +18,6 @@ class bootstrap::people::abuxton::osx::puppet(
     pdk_download_url  =>  'pm.puppet.com/cgi-bin/pdk_download.cgi?dist=osx&rel=10.12&arch=x86_64',
     pdk_version       => 'latest',
     }
+
 
 }
