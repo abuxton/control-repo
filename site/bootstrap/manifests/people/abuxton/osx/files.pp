@@ -7,7 +7,7 @@ class bootstrap::people::abuxton::osx::files(
     ensure => 'link',
     mode   => '0755',
     target => "${user_home}/Dropbox/profile/dotfiles/atom",
-    force => true,
+    force  => true,
     #type   => 'link',
   }
   file { "${user_home}/.bash_profile":

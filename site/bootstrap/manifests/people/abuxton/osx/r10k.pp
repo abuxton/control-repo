@@ -3,13 +3,13 @@ class bootstrap::people::abuxton::osx::r10k(
   $user_home  = $bootstrap::people::abuxton::params::user_home,
   ) inherits bootstrap::people::abuxton::params {
 package {'r10k':
-  ensure => present,
+  ensure   => present,
   provider => 'gem',
 }
 file{"${user_home}/.puppetlabs/etc/puppet/r10k":
   ensure => 'directory',
-  mode => '0755',
-  owner => 'abuxton',
+  mode   => '0755',
+  owner  => 'abuxton',
 }
 file { "${user_home}/.puppetlabs/etc/puppet/r10k/r10k.yaml":
   ensure  => 'file',
