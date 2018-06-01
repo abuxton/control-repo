@@ -3,8 +3,9 @@ class bootstrap::people::abuxton::osx::puppet(
   $user_home  = $bootstrap::people::abuxton::params::user_home,
 
   ) inherits bootstrap::people::abuxton::params {
-  include resource_api::agent
-  
+
+  include resource_api::agent #required as the module is downloaded and will error on --types flag if not installed.
+
   file { "$user_home/.puppetlabs":
     ensure => 'directory',
   }
