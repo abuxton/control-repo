@@ -1,3 +1,4 @@
+#
 class bootstrap::people::abuxton::osx::files(
   $user       = $bootstrap::people::abuxton::params::user,
   $user_home  = $bootstrap::people::abuxton::params::user_home,
@@ -7,7 +8,7 @@ class bootstrap::people::abuxton::osx::files(
     ensure => 'link',
     mode   => '0755',
     target => "${user_home}/Dropbox/profile/dotfiles/atom",
-    force => true,
+    force  => true,
     #type   => 'link',
   }
   file { "${user_home}/.bash_profile":
@@ -46,10 +47,10 @@ class bootstrap::people::abuxton::osx::files(
     mode   => '0755',
     target => '/Users/abuxton/.dotfiles/tmux.conf',
   }
-file { "${user_home}/.profile":
-  ensure  => 'file',
-  content => '{md5}d41d8cd98f00b204e9800998ecf8427e',
-  mode    => '0644',
-  #type    => 'file',
- }
+  file { "${user_home}/.profile":
+    ensure  => 'file',
+    content => '',
+    mode    => '0644',
+    #type    => 'file',
+  }
 }

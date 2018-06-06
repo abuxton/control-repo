@@ -119,7 +119,7 @@ If you use Puppet Enterprise and have not yet enabled and configured Code Manage
 
 ## Using R10k locally for testing, fun and profit
 
-The control repo site folder contains a bootstrap module, the contents of which set up a handfull of folders for puppet and r10k. The Gemfile.local introduces r10k withn the bounds of `bundler`.
+The control repo site folder contains a bootstrap module, the contents of which set up a handful of folders for puppet and r10k. The Gemfile.local introduces r10k within the bounds of `bundler` and `bundle exec r10k --help ...`.
 
 First clone the repo to your local OS (most of this is tested on OSX)
 
@@ -127,5 +127,31 @@ First clone the repo to your local OS (most of this is tested on OSX)
 from with in your clone of the repo run the following once you have set up the environments folder and or local r10k folder (see site/role, site/profile and site/bootstrap for a clue.)
 Obv. you'll need local install of `gem bundler` the whole conxept of this repo is before and after puppet is installed so you can use `/opt/puppetlabs/bin/gem` environment for all your ruby needs.
 
-`bundle install --path vendor/bundle`
-`bundle exec r10k deploy environment --config site/bootsrap/file/r10k.yaml`
+```shell
+bundle install --path vendor/bundle
+bundle exec r10k deploy environment --config site/bootsrap/file/r10k.yaml
+```
+
+There is a bug in this process on osx where the control repo does not deploy correctly first time, simply run:
+
+```shell
+rm -rf `puppet config print environmentpath`/production
+#and redeploy a second time
+bundle exec r10k deploy environment --config site/bootsrap/file/r10k.yaml
+
+```
+
+## Bootstrapping Puppet
+
+The control-repo/scripts folder is intended to hold useful scripts of a nature to allow you to bootstrap the installation and deployment of Puppet.
+
+* Deploy the Puppet Master
+* Deploy the Puppet Agent #for local laptop usage
+
+The control-repo/site folder holds role and profiles and a bootstrap module where puppet is suitable to use to bootstrap the thing, to be used before or after r10k is invoked for deployment of the code environment.  
+
+* Bolt
+* PDK
+
+## Bolt
+It's worth being aware bolt is included in Gemfile.local as such you can on a local machine invoke `bundle exec bolt --help` and profit...
