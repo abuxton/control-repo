@@ -13,7 +13,7 @@ file{"${user_home}/.puppetlabs/etc/r10k":
 }
 file { "${user_home}/.puppetlabs/etc/puppet/r10k/r10k.yaml":
   ensure  => 'file',
-  content => 'puppet:///modules/abuxton/r10k.yaml',
+  content => 'puppet:///modules/bootstrap/abuxton_r10k.yaml',
   mode    => '0644',
   owner   => 'abuxton',
   }

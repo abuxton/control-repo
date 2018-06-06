@@ -1,5 +1,5 @@
 # The location to use for storing cached Git repos
-:cachedir: '/var/cache/r10k'
+:cachedir: '/Users/abuxton/.puppetlabs/var/cache/r10k'
 
 # A list of git repositories to create
 :sources:
@@ -7,4 +7,4 @@
   # branch in /etc/puppetlabs/code/environments
   :my-org:
     remote: 'git@github.com:abuxton/control-repo.git' #'git@github.com:$_Insert GitHub Organization Here_$/$_Insert GitHub Repository That Will Be Used For Your Puppet Code Here_$'
-    basedir: '/etc/puppetlabs/code/environments/'
+    basedir: '/Users/abuxton/.puppetlabs/etc/code/environments/'
