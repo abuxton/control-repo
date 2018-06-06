@@ -8,7 +8,7 @@
 Vagrant.configure("2") do |config|
 
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.define :puppet do |node|
+  config.vm.define :master do |node|
     node.vm.provider "virtualbox" do |vb|
    #   # Display the VirtualBox GUI when booting the machine
    #   vb.gui = true
@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
    end
     node.vm.box = "puppetlabs/centos-7.0-64-puppet"
     node.vm.box_check_update = false
-    node.vm.hostname = 'puppet.vagrantup.internal'
+    node.vm.hostname = 'master.vagrantup.internal'
     node.vm.network :private_network, :ip => '10.0.42.2'
     node.vm.network "forwarded_port", guest: 443, host: 1443
     node.vm.network "forwarded_port", guest: 8140, host: 18140
@@ -27,7 +27,7 @@ Vagrant.configure("2") do |config|
 
         # Or as many aliases as you like!
         provisioner.add_host '10.0.42.2', [
-          'primary_master_replica.vagrantup.internal',
+          'master.vagrantup.internal',
           'puppet.vagrantup.internal',
           'master',
           'puppet'
@@ -40,6 +40,8 @@ Vagrant.configure("2") do |config|
     node.vm.synced_folder ".", "/var/cache/control_repo"
     node.vm.synced_folder "./site/bootstrap/files", "/etc/puppetlabs/r10k"
     node.vm.provision "shell", inline: <<-SHELL
+    # stop firewall
+    sudo systemctl stop firewalld #if you wnat it back use puppetlabs/firewall
     yum install tree -y #for reasons
     # to update puppet
     # see https://docs.puppet.com/puppet/4.7/release_notes.html#puppet-471 for version
@@ -80,8 +82,9 @@ Vagrant.configure("2") do |config|
 
 
   #if you are running as a development agent, uncomment these lines
-      #/opt/puppetlabs/puppet/bin/gem install r10k
-      #/opt/puppetlabs/puppet/bin/r10k deploy environment -p
+  #yum install git -y
+  #/opt/puppetlabs/puppet/bin/gem install r10k
+  #/opt/puppetlabs/puppet/bin/r10k deploy environment -p
 
     SHELL
 
@@ -90,11 +93,116 @@ Vagrant.configure("2") do |config|
       #puppet.module_path = "modules"
       puppet.manifests_path = './manifests'
       puppet.manifest_file = "site.pp"
-
-
     end
 
   end
+  config.vm.define :aiocentos do |node|
+    node.vm.provider "virtualbox" do |vb|
+   #   # Display the VirtualBox GUI when booting the machine
+   #   vb.gui = true
+   #
+   #   # Customize the amount of memory on the VM:
+      vb.memory = "2048"
+   end
+    node.vm.box = "puppetlabs/centos-7.0-64-puppet"
+    node.vm.box_check_update = false
+    node.vm.hostname = 'aiocentos.vagrantup.internal'
+    node.vm.network :private_network, :ip => '10.0.42.3'
+    node.vm.provision :hosts, :sync_hosts => false
+    node.vm.provision :hosts do |provisioner|
+
+        # Or as many aliases as you like!
+        provisioner.add_host '10.0.42.3', [
+          'aiocentos.vagrantup.internal',
+          'aiocentos'
+        ]
+      end
+
+    #node.vm.add_host '10.0.42.2', ['puppet.vagrantup.internal','puppet']
+
+    node.vm.synced_folder "../", "/etc/puppetlabs/code/test"
+
+    node.vm.synced_folder ".", "/var/cache/control_repo"
+    node.vm.synced_folder "./site/bootstrap/files", "/etc/puppetlabs/r10k"
+    node.vm.provision "shell", inline: <<-SHELL
+    # stop firewall
+    sudo systemctl stop firewalld #if you wnat it back use puppetlabs/firewall
+    yum install tree -y #for reasons
+    # to update puppet
+    # see https://docs.puppet.com/puppet/4.7/release_notes.html#puppet-471 for version
+    #sudo rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+    # puppet module install puppetlabs-puppet_agent into /tmp/modules of the repository before you try use this
+
+    # arbitery puppet usage in this case to update the agent
+    # module install commands here
+      sudo /opt/puppetlabs/bin/puppet module install puppetlabs-puppet_agent --modulepath=/etc/puppetlabs/code/modules
+
+      sudo /opt/puppetlabs/bin/puppet apply -e "class{'puppet_agent': package_version=>'1.10.12'}"
 
 
+
+  #if you are running as a development agent, uncomment these lines
+      yum install git -y
+      /opt/puppetlabs/puppet/bin/gem install r10k
+      /opt/puppetlabs/puppet/bin/r10k deploy environment -p
+
+    SHELL
+
+    node.vm.provision "puppet" do |puppet|
+      puppet.options = "--verbose --debug"
+      #puppet.module_path = "modules"
+      puppet.manifests_path = './manifests'
+      puppet.manifest_file = "site.pp"
+    end
+
+  end
+  config.vm.define :centosagent01 do |node|
+    node.vm.provider "virtualbox" do |vb|
+   #   # Display the VirtualBox GUI when booting the machine
+   #   vb.gui = true
+   #
+   #   # Customize the amount of memory on the VM:
+      vb.memory = "2048"
+   end
+    node.vm.box = "puppetlabs/centos-7.0-64-puppet"
+    node.vm.box_check_update = false
+    node.vm.hostname = 'centosagent01.vagrantup.internal'
+    node.vm.network :private_network, :ip => '10.0.42.10'
+    node.vm.provision :hosts, :sync_hosts => true
+    node.vm.provision :hosts do |provisioner|
+
+        # Or as many aliases as you like!
+        provisioner.add_host '10.0.42.10', [
+          'centosagent01.vagrantup.internal',
+          'centos-agent01'
+        ]
+        provisioner.add_host '10.0.42.2', [
+          'puppet.vagrantup.internal',
+          'master.vagrantup.internal',
+          'puppet',
+          'master'
+        ]
+      end
+
+
+    node.vm.provision "shell", inline: <<-SHELL
+    # stop firewall
+    sudo systemctl stop firewalld #if you wnat it back use puppetlabs/firewall
+    yum install tree -y #for reasons
+    # to update puppet
+    # see https://docs.puppet.com/puppet/4.7/release_notes.html#puppet-471 for version
+    #sudo rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+    # puppet module install puppetlabs-puppet_agent into /tmp/modules of the repository before you try use this
+
+    # arbitery puppet usage in this case to update the agent
+    # module install commands here
+      sudo /opt/puppetlabs/bin/puppet module install puppetlabs-puppet_agent --modulepath=/etc/puppetlabs/code/modules
+
+      sudo /opt/puppetlabs/bin/puppet apply -e "class{'puppet_agent': package_version=>'1.10.12'}"
+
+      sudo /opt/puppetlabs/bin/puppet agent -t
+
+    SHELL
+
+  end
 end
