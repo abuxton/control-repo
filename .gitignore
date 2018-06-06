@@ -3,6 +3,7 @@
 .yardoc
 .yardwarns
 *.iml
+*.example
 /.bundle/
 /.idea/
 /.vagrant/
