@@ -52,6 +52,8 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
+
+  config.vm.synced_folder "./site", "/etc/puppetlabs/code/test"
   config.vm.synced_folder ".", "/var/cache/control_repo"
 
   #config.vm.synced_folder "./site/bootstrap/files", "/etc/r10k"
