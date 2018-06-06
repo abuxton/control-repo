@@ -6,5 +6,5 @@
   # This will clone the git repository and instantiate an environment per
   # branch in /etc/puppetlabs/code/environments
   :my-org:
-    remote: 'git@github.com:abuxton/control-repo.git' #'git@github.com:$_Insert GitHub Organization Here_$/$_Insert GitHub Repository That Will Be Used For Your Puppet Code Here_$'
+    remote: 'git://github.com/abuxton/control-repo.git' #'git@github.com:$_Insert GitHub Organization Here_$/$_Insert GitHub Repository That Will Be Used For Your Puppet Code Here_$'
     basedir: '/etc/puppetlabs/code/environments/'
