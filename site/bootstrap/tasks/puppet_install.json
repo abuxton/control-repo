@@ -1,0 +1,38 @@
+{
+  "puppet_task_version": 1,
+  "supports_noop": false,
+  "description": "Install Puppet from PE tarball",
+  "input_method": "stdin",
+  "parameters": {
+    "tarball_path": {
+      "description": "path to the local tarball",
+      "type": "Optional[String[1]]"
+    },
+    "tarball_name": {
+      "description": "name of the tarball",
+      "type": "String[1]"
+    },
+    "tarball_ext": {
+      "description": "name of the tarball ext (.tar.gz, .tgz)",
+      "type": "String[1]"
+    },
+    "untar": {
+      "description": "boolean to control tarball abstraction",
+      "type": "Boolean"
+    },
+    "untar_path": {
+      "description": "path to the local pe installer folder or desired location",
+      "type": "String"
+    },
+    "generate_pe_conf": {
+      "description": "Boolean to control whether to use a stored pe.conf or generate a pe.conf on on disc",
+      "type": "Boolean"
+    },
+    "pe_conf_path": {
+      "description": "path to the local pe.conf or where to generate pe.conf",
+      "type": "String"
+    },
+  }
+
+
+}
