@@ -8,82 +8,93 @@
 Vagrant.configure("2") do |config|
 
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "puppetlabs/centos-7.0-64-puppet"
-   config.vm.box_check_update = false
+  config.vm.define :puppet do |node|
+    node.vm.provider "virtualbox" do |vb|
+   #   # Display the VirtualBox GUI when booting the machine
+   #   vb.gui = true
+   #
+   #   # Customize the amount of memory on the VM:
+      vb.memory = "8192"
+   end
+    node.vm.box = "puppetlabs/centos-7.0-64-puppet"
+    node.vm.box_check_update = false
+    node.vm.hostname = 'puppet.vagrantup.internal'
+    node.vm.network :private_network, :ip => '10.0.42.2'
+    node.vm.network "forwarded_port", guest: 443, host: 1443
+    node.vm.network "forwarded_port", guest: 8140, host: 18140
+    node.vm.provision :hosts, :sync_hosts => true
+    node.vm.provision :hosts do |provisioner|
 
-  # Create a forwarded port mapping which allows access to a specific port
-  # within the machine from a port on the host machine. In the example below,
-  # accessing "localhost:8080" will access port 80 on the guest machine.
-  # NOTE: This will enable public access to the opened port
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
+        # Or as many aliases as you like!
+        provisioner.add_host '10.0.42.2', [
+          'primary_master_replica.vagrantup.internal',
+          'puppet.vagrantup.internal',
+          'master',
+          'puppet'
+        ]
+      end
 
-  # Create a forwarded port mapping which allows access to a specific port
-  # within the machine from a port on the host machine and only allow access
-  # via 127.0.0.1 to disable public access
-  # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+    #node.vm.add_host '10.0.42.2', ['puppet.vagrantup.internal','puppet']
 
-  # Create a private network, which allows host-only access to the machine
-  # using a specific IP.
-  # config.vm.network "private_network", ip: "192.168.33.10"
+    node.vm.synced_folder "../", "/etc/puppetlabs/code/test"
+    node.vm.synced_folder ".", "/var/cache/control_repo"
+    node.vm.synced_folder "./site/bootstrap/files", "/etc/puppetlabs/r10k"
+    node.vm.provision "shell", inline: <<-SHELL
+    yum install tree -y #for reasons
+    # to update puppet
+    # see https://docs.puppet.com/puppet/4.7/release_notes.html#puppet-471 for version
+    #sudo rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+    # puppet module install puppetlabs-puppet_agent into /tmp/modules of the repository before you try use this
 
-  # Create a public network, which generally matched to bridged network.
-  # Bridged networks make the machine appear as another physical device on
-  # your network.
-   config.vm.network "public_network"
+    # arbitery puppet usage in this case to update the agent
+    # module install commands here
+      #sudo /opt/puppetlabs/bin/puppet module install puppetlabs-puppet_agent --modulepath=/etc/puppetlabs/code/modules
 
-  # Share an additional folder to the guest VM. The first argument is
-  # the path on the host to the actual folder. The second argument is
-  # the path on the guest to mount the folder. And the optional third
-  # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
+      #sudo /opt/puppetlabs/bin/puppet apply -e "class{'puppet_agent': package_version=>'1.10.12'}"
+      yum install git -y
 
-  # Provider-specific configuration so you can fine-tune various
-  # backing providers for Vagrant. These expose provider-specific options.
-  # Example for VirtualBox:
-  #
-   config.vm.provider "virtualbox" do |vb|
-  #   # Display the VirtualBox GUI when booting the machine
-  #   vb.gui = true
-  #
-  #   # Customize the amount of memory on the VM:
-     vb.memory = "4096"
+
+
+ #if you want to set up pe mom
+ tarball="puppet-enterprise-2018.1.0-el-7-x86_64"
+      if [ -f "/home/vagrant/$tarball.tar.gz" ]
+      then
+        echo "$tarball exists"
+      else
+        sudo sh  /var/cache/control_repo/site/bootstrap/tasks/puppet_download.sh
+      fi
+      if [ -f "/root/$tarball/puppet-enterprise-installer" ]
+      then
+        echo "Puppet Enterprise installer is available"
+      else
+      sudo tar -xvzf puppet-enterprise-2018.1.0-el-7-x86_64.tar.gz -C /root/
+      fi
+      if [ -d "/etc/puppetlabs/enterprise" ]
+      then
+        echo "Puppet Enterprise is installed"
+      else
+        sudo /root/puppet-enterprise-2018.1.0-el-7-x86_64/puppet-enterprise-installer -c /var/cache/control_repo/site/bootstrap/files/pe.conf
+        sudo puppet agent -t && sudo puppet agent -t
+        echo 'make sure you change the default password!! if using this in production'
+      fi
+
+
+  #if you are running as a development agent, uncomment these lines
+      #/opt/puppetlabs/puppet/bin/gem install r10k
+      #/opt/puppetlabs/puppet/bin/r10k deploy environment -p
+
+    SHELL
+
+    node.vm.provision "puppet" do |puppet|
+      puppet.options = "--verbose --debug"
+      #puppet.module_path = "modules"
+      puppet.manifests_path = './manifests'
+      puppet.manifest_file = "site.pp"
+
+
+    end
+
   end
-
-  # Enable provisioning with a shell script. Additional provisioners such as
-  # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
-  # documentation for more information about their specific syntax and use.
-
-  config.vm.synced_folder "./site", "/etc/puppetlabs/code/test"
-  config.vm.synced_folder ".", "/var/cache/control_repo"
-
-  #config.vm.synced_folder "./site/bootstrap/files", "/etc/r10k"
-  config.vm.synced_folder "./site/bootstrap/files", "/etc/puppetlabs/r10k"
-
-   config.vm.provision "shell", inline: <<-SHELL
-   #yum install tree -y #for reasons
-   # to update puppet
-   # see https://docs.puppet.com/puppet/4.7/release_notes.html#puppet-471 for version
-   #sudo rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
-   # puppet module install puppetlabs-puppet_agent into /tmp/modules of the repository before you try use this
-   # module install commands here
-   sudo /opt/puppetlabs/bin/puppet module install puppetlabs-puppet_agent --modulepath=/etc/puppetlabs/code/modules
-
-   # arbitery puppet usage in this case to update the agent
-   sudo /opt/puppetlabs/bin/puppet apply -e "class{'puppet_agent': package_version=>'1.10.12'}"
-   yum install git -y
-   /opt/puppetlabs/puppet/bin/gem install r10k
-   /opt/puppetlabs/puppet/bin/r10k deploy environment -p
-
-   SHELL
-
-   #PUPPET https://www.vagrantup.com/docs/provisioning/puppet_apply.html
-     config.vm.provision "puppet" do |puppet|
-       puppet.options = "--verbose --debug"
-       #puppet.module_path = "modules"
-       puppet.manifests_path = './manifests'
-       puppet.manifest_file = "site.pp"
-
-     end
 
 
 end
