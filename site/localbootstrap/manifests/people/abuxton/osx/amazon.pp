@@ -3,11 +3,11 @@
 # @summary A short summary of the purpose of this class
 #
 # @example
-#   include bootstrap::people::abuxton::osx::amazon
-class bootstrap::people::abuxton::osx::amazon (
-  $user       = $bootstrap::people::abuxton::params::user,
-  $user_home  = $bootstrap::people::abuxton::params::user_home,
-  ) inherits bootstrap::people::abuxton::params {
+#   include localbootstrap::people::abuxton::osx::amazon
+class localbootstrap::people::abuxton::osx::amazon (
+  $user       = $localbootstrap::people::abuxton::params::user,
+  $user_home  = $localbootstrap::people::abuxton::params::user_home,
+  ) inherits localbootstrap::people::abuxton::params {
   package { 'retries':
       ensure   => 'present',
       provider => 'puppet_gem'

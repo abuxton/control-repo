@@ -38,7 +38,7 @@ Vagrant.configure("2") do |config|
 
     node.vm.synced_folder "../", "/etc/puppetlabs/code/test"
     node.vm.synced_folder ".", "/var/cache/control_repo"
-    node.vm.synced_folder "./site/bootstrap/files", "/etc/puppetlabs/r10k"
+    node.vm.synced_folder "./site/localbootstrap/files", "/etc/puppetlabs/r10k"
     node.vm.provision "shell", inline: <<-SHELL
     # stop firewall
     sudo systemctl stop firewalld #if you wnat it back use puppetlabs/firewall
@@ -63,7 +63,7 @@ Vagrant.configure("2") do |config|
       then
         echo "$tarball exists"
       else
-        sudo sh  /var/cache/control_repo/site/bootstrap/tasks/puppet_download.sh
+        sudo sh  /var/cache/control_repo/site/localbootstrap/tasks/puppet_download.sh
       fi
       if [ -f "/root/$tarball/puppet-enterprise-installer" ]
       then
@@ -75,16 +75,16 @@ Vagrant.configure("2") do |config|
       then
         echo "Puppet Enterprise is installed"
       else
-        sudo /root/puppet-enterprise-2018.1.0-el-7-x86_64/puppet-enterprise-installer -c /var/cache/control_repo/site/bootstrap/files/pe.conf
+        sudo /root/puppet-enterprise-2018.1.0-el-7-x86_64/puppet-enterprise-installer -c /var/cache/control_repo/site/localbootstrap/files/pe.conf
         sudo puppet agent -t && sudo puppet agent -t
         echo 'make sure you change the default password!! if using this in production'
       fi
 
 
   #if you are running as a development agent, uncomment these lines
-  #yum install git -y
-  #/opt/puppetlabs/puppet/bin/gem install r10k
-  #/opt/puppetlabs/puppet/bin/r10k deploy environment -p
+  yum install git -y
+  /opt/puppetlabs/puppet/bin/gem install r10k
+  /opt/puppetlabs/puppet/bin/r10k deploy environment -p
 
     SHELL
 
@@ -123,7 +123,7 @@ Vagrant.configure("2") do |config|
     node.vm.synced_folder "../", "/etc/puppetlabs/code/test"
 
     node.vm.synced_folder ".", "/var/cache/control_repo"
-    node.vm.synced_folder "./site/bootstrap/files", "/etc/puppetlabs/r10k"
+    node.vm.synced_folder "./site/localbootstrap/files", "/etc/puppetlabs/r10k"
     node.vm.provision "shell", inline: <<-SHELL
     # stop firewall
     sudo systemctl stop firewalld #if you wnat it back use puppetlabs/firewall

@@ -1,9 +1,9 @@
 #
-class bootstrap::people::abuxton::osx::files(
-  $user       = $bootstrap::people::abuxton::params::user,
-  $user_home  = $bootstrap::people::abuxton::params::user_home,
+class localbootstrap::people::abuxton::osx::files(
+  $user       = $localbootstrap::people::abuxton::params::user,
+  $user_home  = $localbootstrap::people::abuxton::params::user_home,
 
-  ) inherits bootstrap::people::abuxton::params {
+  ) inherits localbootstrap::people::abuxton::params {
   file { "${user_home}/.atom":
     ensure => 'link',
     mode   => '0755',
