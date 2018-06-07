@@ -4,7 +4,7 @@
 #
 # @example
 #   include bootstrap
-class bootstrap {
+class localbootstrap {
   notify{"Example from $module_name":
   }
 }

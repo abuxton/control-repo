@@ -1,5 +1,5 @@
 #
-class bootstrap::people::abuxton::params{
+class localbootstrap::people::abuxton::params{
 case $::osfamily {
   'Darwin': {
     $user = 'abuxton'

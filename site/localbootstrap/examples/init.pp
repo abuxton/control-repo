@@ -1,3 +1,3 @@
 # include Example
 
-include ::bootstrap
+include ::localbootstrap

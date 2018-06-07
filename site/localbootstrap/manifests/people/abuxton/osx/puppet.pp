@@ -1,9 +1,9 @@
 #
-class bootstrap::people::abuxton::osx::puppet(
-  $user       = $bootstrap::people::abuxton::params::user,
-  $user_home  = $bootstrap::people::abuxton::params::user_home,
+class localbootstrap::people::abuxton::osx::puppet(
+  $user       = $localbootstrap::people::abuxton::params::user,
+  $user_home  = $localbootstrap::people::abuxton::params::user_home,
 
-  ) inherits bootstrap::people::abuxton::params {
+  ) inherits localbootstrap::people::abuxton::params {
 
   include resource_api::agent #required as the module is downloaded and will error on --types flag if not installed.
 
