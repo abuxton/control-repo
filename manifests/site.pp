@@ -25,7 +25,7 @@ File { backup => false }
 # will be included in every node's catalog, *in addition* to any classes
 # specified in the console for that node.
 node centosagent01.vagrantup.internal {
-  notify{'i am a module':
+  notify{"i am a node $::facts['fqdn']":
   }
 }
 node default {
