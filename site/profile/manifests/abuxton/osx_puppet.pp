@@ -1,4 +1,4 @@
 class profile::abuxton::osx_puppet{
-  include ::bootstrap::people::abuxton::osx::puppet
-  include ::bootstrap::people::abuxton::osx::r10k
+  include ::localbootstrap::people::abuxton::osx::puppet
+  include ::localbootstrap::people::abuxton::osx::r10k
 }

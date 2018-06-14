@@ -1,3 +1,3 @@
 class profile::abuxton::osx_base{
-  include ::bootstrap::people::abuxton::osx::files
+  include ::localbootstrap::people::abuxton::osx::files
 }
