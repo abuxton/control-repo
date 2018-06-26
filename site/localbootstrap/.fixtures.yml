@@ -4,5 +4,7 @@
 fixtures:
   forge_modules:
      stdlib: "puppetlabs/stdlib"
+     resource_api: "puppetlabs/resource_api"
+     pdk: "abuxton/pdk"
   symlinks:
     #profile: '#{source_dir}/../profile'
