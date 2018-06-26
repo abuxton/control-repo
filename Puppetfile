@@ -8,7 +8,7 @@ forge 'https://forge.puppet.com'
 mod 'abuxton/pdk' #latest
 mod 'puppet-staging', '3.2.0' #dep. abuxton/pdk
 mod 'puppetlabs-stdlib'#, '4.13.1' #install latest
-#mod 'puppetlabs/resource_api', '0.2.0' #
+mod 'puppetlabs/resource_api', '0.2.0' #
 mod 'puppetlabs-puppetserver_gem', '1.0.0' #dep. puppetlabs/resource_api
 
 # provisioning tools
