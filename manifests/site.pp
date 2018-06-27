@@ -29,7 +29,11 @@ node centosagent01.vagrantup.internal {
   notify{"i am a node ${::fqdn}":
   }
 }
-node centosagent01.vagrantup.internal {
+node aiocentos.vagrantup.internal {
+  notify{"i am a node ${::fqdn}":
+  }
+}
+node master.vagrantup.internal {
   notify{"i am a node ${::fqdn}":
   }
 }

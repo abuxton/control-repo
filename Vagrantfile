@@ -36,7 +36,7 @@ Vagrant.configure("2") do |config|
 
     #node.vm.add_host '10.0.42.2', ['puppet.vagrantup.internal','puppet']
 
-    node.vm.synced_folder "../", "/etc/puppetlabs/code/test"
+    node.vm.synced_folder "../puppet_modules", "/etc/puppetlabs/code-test/modules"
     node.vm.synced_folder ".", "/var/cache/control_repo"
     node.vm.synced_folder "./site/localbootstrap/files", "/etc/puppetlabs/r10k"
     node.vm.provision "shell", inline: <<-SHELL
@@ -58,24 +58,24 @@ Vagrant.configure("2") do |config|
 
 
  #if you want to set up pe mom
- tarball="puppet-enterprise-2018.1.0-el-7-x86_64"
+ tarball="puppet-enterprise-2018.1.2-el-7-x86_64"
       if [ -f "/home/vagrant/$tarball.tar.gz" ]
       then
         echo "$tarball exists"
       else
         sudo sh  /var/cache/control_repo/site/localbootstrap/tasks/puppet_download.sh
       fi
-      if [ -f "/root/$tarball/puppet-enterprise-installer" ]
+      if [ -f "/root/${tarball}/puppet-enterprise-installer" ]
       then
         echo "Puppet Enterprise installer is available"
       else
-      sudo tar -xvzf puppet-enterprise-2018.1.0-el-7-x86_64.tar.gz -C /root/
+      sudo tar -xvzf /home/vagrant/"${tarball}".tar.gz -C /root/
       fi
       if [ -d "/etc/puppetlabs/enterprise" ]
       then
         echo "Puppet Enterprise is installed"
       else
-        sudo /root/puppet-enterprise-2018.1.0-el-7-x86_64/puppet-enterprise-installer -c /var/cache/control_repo/site/localbootstrap/files/pe.conf
+        sudo /root/"${tarball}"/puppet-enterprise-installer -c /var/cache/control_repo/site/localbootstrap/files/pe.conf
         sudo puppet agent -t && sudo puppet agent -t
         echo 'make sure you change the default password!! if using this in production'
       fi
