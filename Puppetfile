@@ -30,6 +30,6 @@ mod 'WhatsARanjit-node_manager', '0.7.1' #manage classification groups
 #  :git    => 'https://github.com/puppetlabs/puppetlabs-apache',
 #  :branch => 'docs_experiment'
 
-mod 'apache',
-  :git    => '/etc/puppetlabs/code-test/modules/apache'#,
+#mod 'apache',
+#  :git    => '/etc/puppetlabs/code-test/modules/apache'#,
 #  :branch => 'docs_experiment'
