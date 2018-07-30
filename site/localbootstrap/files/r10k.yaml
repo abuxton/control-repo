@@ -1,0 +1,11 @@
+---
+cachedir: /opt/puppetlabs/server/data/puppetserver/r10k
+sources:
+  puppet:
+    basedir: /etc/puppetlabs/code/environments
+    remote: /var/cache/control_repo
+
+
+deploy:
+    write_lock: Direct invocation of r10k is disabled when Code Manager is auto configured.
+
