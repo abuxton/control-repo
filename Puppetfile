@@ -26,13 +26,9 @@ mod 'WhatsARanjit-node_manager', '0.7.1' #manage classification groups
 #  :git    => 'https://github.com/puppetlabs/puppetlabs-apache',
 #  :commit => 'de290646f97e04b4b8e42c70f6e01e860c394ce7'
 
-#mod 'apache',
-#  :git    => 'https://github.com/puppetlabs/puppetlabs-apache',
-#  :branch => 'docs_experiment'
+#mod 'test',
+#   :git    => '/etc/puppetlabs/code-test/modules/test',
+#   :branch => 'master'
 
-mod 'apache',
-   :git    => '/etc/puppetlabs/code-test/modules/apache',
-   :branch => 'master'
-mod 'test',
-   :git    => '/etc/puppetlabs/code-test/modules/test',
-   :branch => 'master'
+mod 'azure_key_vault',
+  :git => 'https://github.com/TraGicCode/tragiccode-azure_key_vault'
