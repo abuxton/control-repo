@@ -42,7 +42,8 @@ Vagrant.configure("2") do |config|
     node.vm.provision "shell", inline: <<-SHELL
     # stop firewall
     sudo systemctl stop firewalld #if you wnat it back use puppetlabs/firewall
-    yum install tree -y #for reasons
+    yum install tree -y
+    yum install bolt -y #for reasons
     # to update puppet
     # see https://docs.puppet.com/puppet/4.7/release_notes.html#puppet-471 for version
     #sudo rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
