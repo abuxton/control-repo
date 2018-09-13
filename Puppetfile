@@ -30,7 +30,7 @@ mod 'WhatsARanjit-node_manager', '0.7.1' #manage classification groups
 #   :git    => '/etc/puppetlabs/code-test/modules/test',
 #   :branch => 'master'
 mod 'puppet_ds',
-  :git => 'https://github.com/abuxton/puppet_ds'
+  :git => 'https://github.com/abuxton/puppet_ds',
   :branch => 'development'
 
 mod 'azure_key_vault',
