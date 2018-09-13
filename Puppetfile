@@ -31,5 +31,7 @@ mod 'WhatsARanjit-node_manager', '0.7.1' #manage classification groups
 #   :branch => 'master'
 mod 'puppet_ds',
   :git => 'https://github.com/abuxton/puppet_ds'
+  :branch => 'development'
+
 mod 'azure_key_vault',
   :git => 'https://github.com/TraGicCode/tragiccode-azure_key_vault'
