@@ -33,5 +33,8 @@ mod 'puppet_ds',
   :git => 'https://github.com/abuxton/puppet_ds',
   :branch => 'development'
 
+mod 'adviser',
+  :git => 'git@github.com:puppetlabs/prosvc-adviser.git'
+
 mod 'azure_key_vault',
   :git => 'https://github.com/TraGicCode/tragiccode-azure_key_vault'
