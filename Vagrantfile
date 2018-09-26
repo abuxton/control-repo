@@ -22,6 +22,7 @@ Vagrant.configure("2") do |config|
     node.vm.network :private_network, :ip => '10.0.42.2'
     node.vm.network "forwarded_port", guest: 443, host: 1443
     node.vm.network "forwarded_port", guest: 8140, host: 18140
+    node.vm.network "forwarded_port", guest: 8808, host: 18808
     node.vm.provision :hosts, :sync_hosts => true
     node.vm.provision :hosts do |provisioner|
 
