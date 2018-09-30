@@ -31,4 +31,9 @@ file_line { 'source hue_bash_profile':
    line => 'source ~/.hue_bash_profile',
 }
 
+package { 'faraday','multipart-post':
+  ensure => installed,
+  provider => puppet-gem,
+}
+
 }
