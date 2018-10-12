@@ -33,8 +33,8 @@ mod 'puppet_ds',
   :git => 'https://github.com/abuxton/puppet_ds',
   :branch => 'development'
 
-mod 'hi5er',
-  :git => 'git@github.com:WhatsARanjit/puppet-hi5er.git'
+mod 'puppet_mountpoint',
+  :git => 'https://github.com/abuxton/puppet_mountpoint.git'
 mod 'adviser',
   :git => 'git@github.com:puppetlabs/prosvc-adviser.git'
 
