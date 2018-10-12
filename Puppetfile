@@ -41,7 +41,7 @@ mod 'puppet_mountpoint',
 mod 'puppetlabs-inifile', '2.4.0'
 mod 'puppetlabs-hocon', '1.0.1'
 #mod 'adviser',
-  :git => 'git@github.com:puppetlabs/prosvc-adviser.git'
+#  :git => 'git@github.com:puppetlabs/prosvc-adviser.git'
 
 mod 'azure_key_vault',
   :git => 'https://github.com/TraGicCode/tragiccode-azure_key_vault'
