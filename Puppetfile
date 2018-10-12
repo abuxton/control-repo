@@ -35,6 +35,8 @@ mod 'puppet_ds',
 
 mod 'puppet_mountpoint',
   :git => 'https://github.com/abuxton/puppet_mountpoint.git'
+mod 'puppetlabs-inifile', '2.4.0'
+mod 'puppetlabs-hocon', '1.0.1'
 mod 'adviser',
   :git => 'git@github.com:puppetlabs/prosvc-adviser.git'
 
