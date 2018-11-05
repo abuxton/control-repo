@@ -10,6 +10,7 @@ mod 'puppet-staging', '3.2.0' #dep. abuxton/pdk
 mod 'puppetlabs-stdlib'#, '4.13.1' #install latest
 mod 'puppetlabs/resource_api' #
 mod 'puppetlabs-puppetserver_gem', '1.0.0' #dep. puppetlabs/resource_api
+mod 'tspy-code_deploy', '1.0.3'
 
 # home automation
 mod 'tphoney-simple_hue', '0.2.0'
