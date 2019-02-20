@@ -9,8 +9,8 @@ mod 'abuxton/pdk' #latest
 mod 'puppet-staging', '3.2.0' #dep. abuxton/pdk
 mod 'puppetlabs-stdlib'#, '4.13.1' #install latest
 mod 'puppetlabs/resource_api' #
-mod 'puppetlabs-puppetserver_gem', '1.0.0' #dep. puppetlabs/resource_api
-mod 'tspy-code_deploy', '1.0.3'
+mod 'puppetlabs-puppetserver_gem', '1.1.0' #dep. puppetlabs/resource_api
+mod 'tspy-code_deploy', '1.0.4'
 
 # home automation
 mod 'tphoney-simple_hue', '0.2.0'
@@ -20,8 +20,8 @@ mod 'puppetlabs-aws', '2.1.0'
 
 # environment tools
 mod 'ccin2p3-bolt', '0.2.0' #no osx support so usefull for master Setup
-mod 'puppetlabs-bootstrap', '0.2.0' #install PE agents with Bolt
-mod 'puppetlabs-puppet_agent', '1.6.0' #manage and upgrade agents
+mod 'puppetlabs-bootstrap', '0.4.1' #install PE agents with Bolt
+mod 'puppetlabs-puppet_agent', '2.0.1' #manage and upgrade agents
 mod 'WhatsARanjit-node_manager', '0.7.1' #manage classification groups
 
 # Modules from Git
@@ -40,7 +40,7 @@ mod 'puppet_ds',
 mod 'puppet_mountpoint',
   :git => 'https://github.com/abuxton/puppet_mountpoint.git'
 
-mod 'puppetlabs-inifile', '2.4.0'
+mod 'puppetlabs-inifile', '2.5.0'
 mod 'puppetlabs-hocon', '1.0.1'
 #mod 'adviser',
 #  :git => 'git@github.com:puppetlabs/prosvc-adviser.git'
