@@ -17,6 +17,12 @@ class localbootstrap::people::abuxton::osx::files(
     target => '/Users/abuxton/Dropbox/profile/dotfiles/bash_profile',
     #type   => 'link',
   }
+  file { "${user_home}/.vagrant_profile":
+    ensure => 'link',
+    mode   => '0755',
+    target => '/Users/abuxton/Dropbox/profile/dotfiles/vagrant_profile',
+    #type   => 'link',
+  }
   file { "${user_home}/.bashrc":
     ensure => 'link',
     mode   => '0755',
