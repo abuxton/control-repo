@@ -4,13 +4,14 @@ class localbootstrap::people::abuxton::osx::files(
   $user_home  = $localbootstrap::people::abuxton::params::user_home,
 
   ) inherits localbootstrap::people::abuxton::params {
-  file { "${user_home}/.atom":
-    ensure => 'link',
-    mode   => '0755',
-    target => "${user_home}/Dropbox/profile/dotfiles/atom",
-    force  => true,
-    #type   => 'link',
-  }
+  # file { "${user_home}/.atom":
+  #   ensure => 'link',
+  #   mode   => '0755',
+  #   target => "${user_home}/Dropbox/profile/dotfiles/atom",
+  #   force  => true,
+  #   #type   => 'link',
+  # } # probably no longer needed as VCS rules the day.
+  
   file { "${user_home}/.bash_profile":
     ensure => 'link',
     mode   => '0755',
