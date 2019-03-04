@@ -11,9 +11,16 @@ mod 'puppetlabs-stdlib'#, '4.13.1' #install latest
 mod 'puppetlabs/resource_api' #
 mod 'puppetlabs-puppetserver_gem', '1.1.0' #dep. puppetlabs/resource_api
 mod 'tspy-code_deploy', '1.0.4'
+#cd4pe and dependencies
+mod 'puppetlabs-cd4pe', '1.1.1'
+mod 'puppetlabs-concat', '5.3.0'
+mod 'puppetlabs-docker', '3.4.0'
+mod 'puppetlabs-puppet_authorization', '0.5.0'
+mod 'puppetlabs-hocon', '1.0.1'
+
 
 # home automation
-mod 'tphoney-simple_hue', '0.2.0'
+#mod 'tphoney-simple_hue', '0.2.0'
 
 # provisioning tools
 mod 'puppetlabs-aws', '2.1.0'

@@ -43,8 +43,10 @@ Vagrant.configure("2") do |config|
     node.vm.provision "shell", inline: <<-SHELL
     # stop firewall
     sudo systemctl stop firewalld #if you wnat it back use puppetlabs/firewall
-    yum install tree -y
-    yum install bolt -y #for reasons
+    sudo yum install tree -y
+    sudo yum install git -y
+    sudo yum install pdk -y #for reasons
+    sudo yum install puppet-bolt -y #for reasons
     # to update puppet
     # see https://docs.puppet.com/puppet/4.7/release_notes.html#puppet-471 for version
     #sudo rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
@@ -53,19 +55,20 @@ Vagrant.configure("2") do |config|
     # arbitery puppet usage in this case to update the agent
     # module install commands here
       #sudo /opt/puppetlabs/bin/puppet module install puppetlabs-puppet_agent --modulepath=/etc/puppetlabs/code/modules
+:w
 
       #sudo /opt/puppetlabs/bin/puppet apply -e "class{'puppet_agent': package_version=>'1.10.12'}"
-      yum install git -y
 
 
 
  #if you want to set up pe mom
- tarball="puppet-enterprise-2018.1.2-el-7-x86_64"
+ version=2018.1.7
+ tarball="puppet-enterprise-${version}-el-7-x86_64"
       if [ -f "/home/vagrant/$tarball.tar.gz" ]
       then
         echo "$tarball exists"
       else
-        sudo sh  /var/cache/control_repo/site/localbootstrap/tasks/puppet_download.sh
+        sudo DOWNLOAD_VERSION=${version}  /var/cache/control_repo/site/localbootstrap/tasks/puppet_download.sh
       fi
       if [ -f "/root/${tarball}/puppet-enterprise-installer" ]
       then
@@ -84,9 +87,9 @@ Vagrant.configure("2") do |config|
 
 
   #if you are running as a development agent, uncomment these lines
-  yum install git -y
-  /opt/puppetlabs/puppet/bin/gem install r10k
-  /opt/puppetlabs/puppet/bin/r10k deploy environment -p
+  #yum install git -y
+  #/opt/puppetlabs/puppet/bin/gem install r10k
+  #/opt/puppetlabs/puppet/bin/r10k deploy environment -p
 
     SHELL
 
