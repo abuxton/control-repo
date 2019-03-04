@@ -17,7 +17,7 @@ mod 'puppetlabs-concat', '5.3.0'
 mod 'puppetlabs-docker', '3.4.0'
 mod 'puppetlabs-puppet_authorization', '0.5.0'
 mod 'puppetlabs-hocon', '1.0.1'
-
+mod 'puppetlabs-translate', '1.2.0'
 
 # home automation
 #mod 'tphoney-simple_hue', '0.2.0'
