@@ -6,6 +6,7 @@ forge 'https://forge.puppet.com'
 #mod 'puppetlabs/stdlib',      '5.0.0'
 # modules for workstation and development laptop setup
 mod 'abuxton/pdk' #latest
+mod 'puppet/archive'
 mod 'puppet-staging', '3.2.0' #dep. abuxton/pdk
 mod 'puppetlabs-stdlib'#, '4.13.1' #install latest
 mod 'puppetlabs/resource_api' #
