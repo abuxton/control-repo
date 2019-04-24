@@ -1,0 +1,4 @@
+format: human
+ssh:
+  host-key-check: false
+  private-key: ~/.ssh/abuxton_id_rsa

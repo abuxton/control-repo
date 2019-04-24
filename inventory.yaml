@@ -1,0 +1,15 @@
+groups:
+  - name: ssh_nodes
+    groups:
+      - name: abcmaster
+        nodes:
+          - abcmaster0.classroom.puppet.com
+        config:
+          ssh:
+            user: centos
+    config:
+      transport: ssh
+      ssh:
+        user: centos
+        private-key: ~/.ssh/training.pem
+        host-key-check: false
