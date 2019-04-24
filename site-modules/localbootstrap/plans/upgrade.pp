@@ -1,6 +1,7 @@
 plan localbootstrap::upgrade(
-  TargetSpec $nodes,
-  String $tmpdir,
+  TargetSpec  $nodes,
+  String      $tmpdir,
+  Boolean     $debug = false,
 ){
   $r = run_task('localbootstrap::puppet_download', $nodes)
   $r.each |$result| {
