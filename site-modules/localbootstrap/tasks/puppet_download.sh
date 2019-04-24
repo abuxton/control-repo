@@ -54,3 +54,5 @@ curl --progress-bar \
   -o "./${tarball_name}" \
   -C - \
   "https://pm.puppetlabs.com/cgi-bin/download.cgi?dist=${DOWNLOAD_DIST}&rel=${DOWNLOAD_RELEASE}&arch=${DOWNLOAD_ARCH}&ver=${DOWNLOAD_VERSION}"
+
+tar -xzf $PWD/$tarball_name
