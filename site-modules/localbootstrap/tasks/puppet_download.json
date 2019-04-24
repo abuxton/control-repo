@@ -6,7 +6,7 @@
   "parameters": {
     "debug": {
       "description": "debug or not to debug",
-      "type": "Boolean"
+      "type": "Optional[Boolean]"
     }
   }
 }
