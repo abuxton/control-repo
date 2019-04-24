@@ -2,6 +2,11 @@
   "puppet_task_version": 1,
   "supports_noop": false,
   "description": "Task to download Puppet Enterprise installer",
+  "input_method": "stdin",
   "parameters": {
+    "debug": {
+      "description": "debug or not to debug",
+      "type": "Boolean"
+    }
   }
 }

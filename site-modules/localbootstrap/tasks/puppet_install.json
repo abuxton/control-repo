@@ -31,7 +31,7 @@
     "pe_conf_path": {
       "description": "path to the local pe.conf or where to generate pe.conf",
       "type": "String"
-    },
+    }
   }
 
 
