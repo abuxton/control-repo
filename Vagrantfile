@@ -39,7 +39,7 @@ Vagrant.configure("2") do |config|
 
     node.vm.synced_folder "../puppet_modules", "/etc/puppetlabs/code-test/modules"
     node.vm.synced_folder ".", "/var/cache/control_repo"
-    node.vm.synced_folder "./site/localbootstrap/files", "/etc/puppetlabs/r10k"
+    node.vm.synced_folder "./site-modules/localbootstrap/files", "/etc/puppetlabs/r10k"
     node.vm.provision "shell", inline: <<-SHELL
     # stop firewall
     sudo systemctl stop firewalld #if you wnat it back use puppetlabs/firewall
@@ -68,7 +68,7 @@ Vagrant.configure("2") do |config|
       then
         echo "$tarball exists"
       else
-        sudo DOWNLOAD_VERSION=${version}  /var/cache/control_repo/site/localbootstrap/tasks/puppet_download.sh
+        sudo DOWNLOAD_VERSION=${version}  /var/cache/control_repo/site-modules/localbootstrap/tasks/puppet_download.sh
       fi
       if [ -f "/root/${tarball}/puppet-enterprise-installer" ]
       then
@@ -80,7 +80,7 @@ Vagrant.configure("2") do |config|
       then
         echo "Puppet Enterprise is installed"
       else
-        sudo /root/"${tarball}"/puppet-enterprise-installer -c /var/cache/control_repo/site/localbootstrap/files/pe.conf
+        sudo /root/"${tarball}"/puppet-enterprise-installer -c /var/cache/control_repo/site-modules/localbootstrap/files/pe.conf
         sudo puppet agent -t && sudo puppet agent -t
         echo 'make sure you change the default password!! if using this in production'
       fi
@@ -128,7 +128,7 @@ Vagrant.configure("2") do |config|
     node.vm.synced_folder "../", "/etc/puppetlabs/code/test"
 
     node.vm.synced_folder ".", "/var/cache/control_repo"
-    node.vm.synced_folder "./site/localbootstrap/files", "/etc/puppetlabs/r10k"
+    node.vm.synced_folder "./site-modules/localbootstrap/files", "/etc/puppetlabs/r10k"
     node.vm.provision "shell", inline: <<-SHELL
     # stop firewall
     sudo systemctl stop firewalld #if you wnat it back use puppetlabs/firewall
