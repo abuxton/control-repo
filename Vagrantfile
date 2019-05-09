@@ -62,7 +62,7 @@ Vagrant.configure("2") do |config|
 
 
  #if you want to set up pe mom
- version=2018.1.7
+ version=2019.1.0
  tarball="puppet-enterprise-${version}-el-7-x86_64"
       if [ -f "/home/vagrant/$tarball.tar.gz" ]
       then
