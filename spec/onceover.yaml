@@ -8,15 +8,15 @@ classes:
 # Nodes to tests classes on, this refers to a 'factset' or 'nodeset'
 # depending on weather you are running 'spec' or 'acceptance' tests
 nodes:
-  - Debian-6.0.10-32
-  - CentOS-6.6-64
+#  - Debian-6.0.10-32
+#  - CentOS-6.6-64
   - CentOS-6.6-32
-  - Debian-6.0.10-64
+#  - Debian-6.0.10-64
   - Windows_Server-2012r2-64
-  - Debian-7.8-32
-  - Windows_Server-2008r2-64
-  - Debian-7.8-64
-  - Ubuntu-14.04-64
+#  - Debian-7.8-32
+#  - Windows_Server-2008r2-64
+#  - Debian-7.8-64
+#  - Ubuntu-14.04-64
 
 # You can group classes here to save typing
 class_groups:

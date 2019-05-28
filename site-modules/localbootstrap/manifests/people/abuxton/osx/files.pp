@@ -18,10 +18,10 @@ class localbootstrap::people::abuxton::osx::files(
     target => '/Users/abuxton/Dropbox/profile/dotfiles/bash_profile',
     #type   => 'link',
   }
-  file { "${user_home}/.vagrant_profile":
+  file { "${user_home}/.vagrant_bashrc":
     ensure => 'link',
     mode   => '0755',
-    target => '/Users/abuxton/Dropbox/profile/dotfiles/vagrant_profile',
+    target => '/Users/abuxton/Dropbox/profile/dotfiles/vagrant_bashrc',
     #type   => 'link',
   }
   file { "${user_home}/.bashrc":
@@ -37,7 +37,7 @@ class localbootstrap::people::abuxton::osx::files(
   file { "${user_home}/.gitconfig":
     ensure => 'link',
     mode   => '0755',
-    target => '/Users/abuxton/Dropbox/profile/dotfiles/bck.gitconfig',
+    target => '/Users/abuxton/Dropbox/profile/dotfiles/gitconfig',
   }
   file { "${user_home}/.puppetforge.yml":
     ensure => 'link',
@@ -58,6 +58,26 @@ class localbootstrap::people::abuxton::osx::files(
     ensure  => 'file',
     content => '',
     mode    => '0644',
-    #type    => 'file',
+    #
   }
+  file { '/Users/abuxton/.docker_bashrc':
+    ensure => 'link',
+    mode   => '0777',
+    target => '/Users/abuxton/Dropbox/profile/dotfiles/docker_bashrc',
+  }
+  file { '/Users/abuxton/.go_bashrc':
+    ensure => 'link',
+    mode   => '0755',
+    target => '/Users/abuxton/Dropbox/profile/dotfiles/go_bashrc',
+  }
+file { '/Users/abuxton/.python_bashrc':
+  ensure => 'link',
+  mode   => '0755',
+  target => '/Users/abuxton/Dropbox/profile/dotfiles/python_bashrc',
+}
+file { '/Users/abuxton/.virtualenvs':
+  ensure => 'link',
+  mode   => '0777',
+  target => '/Users/abuxton/Dropbox/profile/dotfiles/virtualenvs',
+}
 }
