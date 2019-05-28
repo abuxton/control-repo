@@ -8,6 +8,10 @@ class role::abuxton_laptop{
       include profile::abuxton::osx_base
       include profile::abuxton::osx_puppet
     }
+    '^macbook': {
+      include profile::abuxton::osx_base
+      include profile::abuxton::osx_puppet
+    }
   }
 
 }
