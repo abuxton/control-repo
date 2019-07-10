@@ -54,3 +54,7 @@ mod 'puppetlabs-inifile', '2.5.0'
 
 mod 'azure_key_vault',
   :git => 'https://github.com/TraGicCode/tragiccode-azure_key_vault'
+
+mod 'sophos',
+  :git => 'https://github.com/abuxton/puppet-sophos.git'
+  
