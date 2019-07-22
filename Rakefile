@@ -41,3 +41,6 @@ task :test do
     Rake::Task[test].invoke
   end
 end
+
+require 'ra10ke'
+Ra10ke::RakeTask.new

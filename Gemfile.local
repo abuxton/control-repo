@@ -15,4 +15,7 @@ group :development do
   gem 'aws-sdk'
   gem 'retries'
   gem 'onceover'
+  gem 'ra10ke'
+  gem 'metadata-json-lint'
+  gem 'rubocop'
 end
